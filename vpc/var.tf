@@ -48,7 +48,6 @@ variable "tags" {
   type        = map(string)
   default = {
     "Project"     = "TerraformEKSWorkshop"
-    "Environment" = var.env
     "Owner"       = "Akmaral"
   }
 }
