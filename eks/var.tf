@@ -15,9 +15,8 @@ variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
   default = {
-    "Project"     = "TerraformEKSWorkshop"
-    "Environment" = "Development"
-    "Owner"       = "Ashish Patel"
+    "Project"     = "Final Project"
+    "environment" = "${var.env}"
   }
 }
 variable "node_groups" {
@@ -30,4 +29,9 @@ locals {
     for x in var.node_groups :
     "${x.max_size}/${x.min_size}" => x
   }
+}
+
+variable "env" {
+  type = string
+  description = "environment name"
 }

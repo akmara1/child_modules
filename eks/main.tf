@@ -53,6 +53,7 @@ resource "aws_security_group" "eks_cluster" {
   vpc_id      = var.vpc_id
   tags = {
     Name = "${var.project}-cluster-sg"
+    "environment" = "${var.env}"
   }
 }
 
@@ -94,6 +95,10 @@ resource "aws_eks_node_group" "this" {
   launch_template {
     name    = aws_launch_template.example.name
     version = aws_launch_template.example.latest_version
+  }
+
+  tags = {
+    "environment" = "${var.env}"
   }
 
   depends_on = [
@@ -162,6 +167,8 @@ resource "aws_security_group" "eks_nodes" {
   tags = {
     Name                                           = "${var.project}-node-sg"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
+    "environment" = "${var.env}"
+  
   }
 }
 

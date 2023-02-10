@@ -14,3 +14,7 @@ variable "subnet_id" {
   type        = string
   description = "Instance type to use for the instance"
 }
+variable "env" {
+  type = string
+  description = "environment name"
+}
