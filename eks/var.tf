@@ -30,8 +30,3 @@ locals {
     "${x.max_size}/${x.min_size}" => x
   }
 }
-
-variable "env" {
-  type = string
-  description = "environment name"
-}

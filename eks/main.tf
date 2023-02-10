@@ -53,7 +53,7 @@ resource "aws_security_group" "eks_cluster" {
   vpc_id      = var.vpc_id
   tags = {
     Name = "${var.project}-cluster-sg"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_security_group_rule" "cluster_outbound" {
 resource "aws_eks_node_group" "this" {
   for_each        = local.node_groups
   cluster_name    = aws_eks_cluster.this.name
-  node_group_name = "${var.env}-${each.value.node_group_name}"
+  node_group_name = "${var.project}-${each.value.node_group_name}"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.private_subnets
 
@@ -98,7 +98,7 @@ resource "aws_eks_node_group" "this" {
   }
 
   tags = {
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 
   depends_on = [
@@ -167,7 +167,7 @@ resource "aws_security_group" "eks_nodes" {
   tags = {
     Name                                           = "${var.project}-node-sg"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   
   }
 }

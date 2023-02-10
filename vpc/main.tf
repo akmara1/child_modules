@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name                                           = "${var.project}-vpc",
     "kubernetes.io/cluster/${var.project}-cluster" = "shared"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "public" {
     Name                                           = "${var.project}-public-sg"
     "kubernetes.io/cluster/${var.project}-cluster" = "shared"
     "kubernetes.io/role/elb"                       = 1
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 
   map_public_ip_on_launch = true
@@ -40,7 +40,7 @@ resource "aws_subnet" "private" {
     Name                                           = "${var.project}-private-sg"
     "kubernetes.io/cluster/${var.project}-cluster" = "shared"
     "kubernetes.io/role/internal-elb"              = 1
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_internet_gateway" "this" {
 
   tags = {
     "Name" = "${var.project}-igw"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 
   depends_on = [aws_vpc.vpc]
@@ -68,7 +68,7 @@ resource "aws_route_table" "main" {
 
   tags = {
     Name = "${var.project}-Default-rt"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -86,7 +86,7 @@ resource "aws_eip" "main" {
 
   tags = {
     Name = "${var.project}-ngw-ip"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -97,7 +97,7 @@ resource "aws_nat_gateway" "main" {
 
   tags = {
     Name = "${var.project}-ngw"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -115,7 +115,7 @@ resource "aws_security_group" "public_sg" {
 
   tags = {
     Name = "${var.project}-Public-sg"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -154,7 +154,7 @@ resource "aws_security_group" "data_plane_sg" {
 
   tags = {
     Name = "${var.project}-Worker-sg"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 
@@ -195,7 +195,7 @@ resource "aws_security_group" "control_plane_sg" {
 
   tags = {
     Name = "${var.project}-ControlPlane-sg"
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
 

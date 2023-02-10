@@ -7,6 +7,6 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
 
   tags = {
-    "environment" = "${var.env}"
+    "environment" = "${var.project}"
   }
 }
