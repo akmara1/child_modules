@@ -16,7 +16,6 @@ variable "tags" {
   type        = map(string)
   default = {
     "Project"     = "Final Project"
-    "environment" = "${var.env}"
   }
 }
 variable "node_groups" {
