@@ -1,7 +1,7 @@
-variable "public_subnets" {
-  type        = list(any)
-  description = "ID of subnets in which will be created cluster and node group"
-}
+# variable "public_subnets" {
+#   type        = list(any)
+#   description = "ID of subnets in which will be created cluster and node group"
+# }
 variable "project" {
   type        = string
   description = "Name to be used on all the resources as identifier. e.g. Project name, Application name"
@@ -28,4 +28,8 @@ locals {
     for x in var.node_groups :
     "${x.max_size}/${x.min_size}" => x
   }
+}
+variable "public_subnets" {
+  type        = list(any)
+  description = "ID of subnets in which will be created cluster and node group"
 }
