@@ -29,20 +29,20 @@ resource "aws_subnet" "public" {
 }
 
 # Private Subnets
-resource "aws_subnet" "private" {
-  count = var.availability_zones_count_private
+# resource "aws_subnet" "private" {
+#   count = var.availability_zones_count_private
 
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = cidrsubnet(var.vpc_cidr, var.subnet_cidr_bits, count.index + var.availability_zones_count_public)
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+#   vpc_id            = aws_vpc.vpc.id
+#   cidr_block        = cidrsubnet(var.vpc_cidr, var.subnet_cidr_bits, count.index + var.availability_zones_count_public)
+#   availability_zone = data.aws_availability_zones.available.names[count.index]
 
-  tags = {
-    Name                                           = "${var.project}-private-sg"
-    "kubernetes.io/cluster/${var.project}-cluster" = "shared"
-    "kubernetes.io/role/internal-elb"              = 1
-    "environment" = "${var.project}"
-  }
-}
+#   tags = {
+#     Name                                           = "${var.project}-private-sg"
+#     "kubernetes.io/cluster/${var.project}-cluster" = "shared"
+#     "kubernetes.io/role/internal-elb"              = 1
+#     "environment" = "${var.project}"
+#   }
+# }
 
 # Internet Gateway
 resource "aws_internet_gateway" "this" {
