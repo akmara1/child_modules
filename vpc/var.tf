@@ -10,11 +10,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "availability_zones_count_private" {
-  description = "The number of AZs."
-  type        = number
-  default     = 1
-}
+# variable "availability_zones_count_private" {
+#   description = "The number of AZs."
+#   type        = number
+#   default     = 1
+# }
 
 variable "availability_zones_count_public" {
   description = "The number of AZs."
