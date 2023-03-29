@@ -6,7 +6,7 @@ resource "aws_eks_cluster" "this" {
 
   vpc_config {
     # security_group_ids      = [aws_security_group.eks_cluster.id, aws_security_group.eks_nodes.id]
-    subnet_ids              = var.private_subnets
+    subnet_ids              = var.public_subnets
     endpoint_private_access = true
     endpoint_public_access  = true
     public_access_cidrs     = ["0.0.0.0/0"]
