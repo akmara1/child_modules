@@ -1,4 +1,4 @@
-variable "private_subnets" {
+variable "public_subnets" {
   type        = list(any)
   description = "ID of subnets in which will be created cluster and node group"
 }
